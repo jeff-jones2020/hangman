@@ -1,6 +1,9 @@
+import random
+
 class Game:
     def __init__(self, chars):
         self.word = chars
+        self.word_lower = self.word.lower()
         self.wrong_guesses = []
         self.rem_guesses = 5
         self.cur_guess = ''
@@ -26,11 +29,12 @@ class Game:
 
 
     def make_guess(self, char):
+        char = char.lower()
         if not self.is_valid(char):
             pass
-        elif char in self.cur_guess or char in self.wrong_guesses:
+        elif char in self.cur_guess.lower() or char in self.wrong_guesses:
             print('You have already guessed "' + char + '". Try again.')
-        elif char in self.word:
+        elif char in self.word_lower:
             self.update_guess(char)
         else:
             if self.penalize(char) == -1:
@@ -66,8 +70,9 @@ class Game:
         
     def update_guess(self, valid_char):
         for index in range(len(self.word)):
-            if self.word[index] == valid_char:
-                self.cur_guess = self.cur_guess[:index] + valid_char + self.cur_guess[index + 1:]
+            cur_char = self.word[index]
+            if cur_char.lower() == valid_char:
+                self.cur_guess = self.cur_guess[:index] + cur_char + self.cur_guess[index + 1:]
 
         if self.cur_guess == self.word:
             self.has_won = True
@@ -80,4 +85,5 @@ class Game:
         print('Incorrect guesses: ', self.wrong_guesses)
         print('Current guess: ', display , '\n')
 
-wut = Game('booyah')
+words = ['draGons', 'BLASTERS', 'laZors', 'etCetera']
+wut = Game(random.choice(words))
