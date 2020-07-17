@@ -85,5 +85,12 @@ class Game:
         print('Incorrect guesses: ', self.wrong_guesses)
         print('Current guess: ', display , '\n')
 
+
 words = ['draGons', 'BLASTERS', 'laZors', 'etCetera']
-wut = Game(random.choice(words))
+
+bored = True
+
+while bored:
+    new_game = Game(random.choice(words))
+    bored = input('\nPlay again? y/n: ').lower() == 'y'
+    
