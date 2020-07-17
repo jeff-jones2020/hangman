@@ -93,4 +93,5 @@ bored = True
 while bored:
     new_game = Game(random.choice(words))
     bored = input('\nPlay again? y/n: ').lower() == 'y'
+    print('\n')
     
